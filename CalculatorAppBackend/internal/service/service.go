@@ -81,7 +81,7 @@ func (s *calcService) calculateExpression(expression string) (string, error) {
 
 	result, err := expr.Evaluate(nil)
 	if err != nil {
-		return "", nil
+		return "", err
 	}
 
 	return fmt.Sprintf("%v", result), nil
