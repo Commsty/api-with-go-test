@@ -1,4 +1,4 @@
-package service
+package entity
 
 type Calculation struct {
 	ID         string `gorm:"primaryKey" json:"id"`

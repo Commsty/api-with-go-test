@@ -1,7 +1,7 @@
 package db
 
 import (
-	"calc/internal/service"
+	"calc/internal/entity"
 	"log"
 
 	"gorm.io/driver/postgres"
@@ -19,7 +19,7 @@ func InitDB() (*gorm.DB, error) {
 		log.Fatalf("Could connect to database: %v", err)
 	}
 
-	if err := db.AutoMigrate(&service.Calculation{}); err != nil {
+	if err := db.AutoMigrate(&entity.Calculation{}); err != nil {
 		log.Fatalf("Could not migrate: %v", err)
 	}
 

@@ -3,6 +3,7 @@ package main
 import (
 	"calc/internal/db"
 	"calc/internal/handlers"
+	"calc/internal/repository"
 	"calc/internal/service"
 	"log"
 
@@ -19,7 +20,7 @@ func main() {
 
 	e := echo.New()
 
-	calcRepo := service.NewCalcRepository(database)
+	calcRepo := repository.NewCalcRepository(database)
 	calcService := service.NewCalcService(calcRepo)
 	calcHandlers := handlers.NewCalcHandler(calcService)
 

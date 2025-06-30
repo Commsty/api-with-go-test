@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"calc/internal/entity"
 	"calc/internal/service"
 	"net/http"
 
@@ -25,7 +26,7 @@ func (h *CalculationHandler) GetCalculations(c echo.Context) error {
 }
 
 func (h *CalculationHandler) PostCalculations(c echo.Context) error {
-	var req service.CalculationRequest
+	var req entity.CalculationRequest
 	if err := c.Bind(&req); err != nil {
 		return c.JSON(http.StatusBadRequest, map[string]string{"error": "Invalid request"})
 	}
@@ -41,7 +42,7 @@ func (h *CalculationHandler) PostCalculations(c echo.Context) error {
 func (h *CalculationHandler) PatchCalculations(c echo.Context) error {
 	id := c.Param("id")
 
-	var req service.CalculationRequest
+	var req entity.CalculationRequest
 	if err := c.Bind(&req); err != nil {
 		return c.JSON(http.StatusBadRequest, map[string]string{"error": "Invalid request"})
 	}
@@ -57,7 +58,7 @@ func (h *CalculationHandler) DeleteCalculation(c echo.Context) error {
 	id := c.Param("id")
 
 	if err := h.service.DeleteCalculation(id); err != nil {
-		return c.JSON(http.StatusBadRequest, map[string]string{"error": "Couls not delete calculation"})
+		return c.JSON(http.StatusBadRequest, map[string]string{"error": "Could not delete calculation"})
 	}
 
 	return c.NoContent(http.StatusNoContent)
